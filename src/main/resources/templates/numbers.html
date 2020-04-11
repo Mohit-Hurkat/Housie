@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../static/css/numbers.css" th:href="@{/css/numbers.css}" rel="stylesheet"/>
+
+    <title>HOUSIE</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:if="${numberResponse.getNumber() != null and numberResponse.getRoom().getCode() !=null}">
+    <div class="center_number"><p th:text="'Number : '+${numberResponse.getNumber()}"></p></div>
+    <a href="numbers.html"
+       th:href="@{'/number/getPrevious?code='+${numberResponse.getRoom().getCode()}+'&amp;currentNumber='+${numberResponse.getNumber()}}">Previous
+        Number</a>
+    <a href="numbers.html"
+       th:href="@{'/number/getNext?code='+${numberResponse.getRoom().getCode()}+'&amp;currentNumber='+${numberResponse.getNumber()}}">Next
+        Number</a>
+    <a href="numbers.html" th:href="@{'/number/getNextRa:ndom?code='+${numberResponse.getRoom().getCode()}}">Next Random
+        Number</a>
+</div>
+<div th:if="${numberResponse.getNumber() == null and numberResponse.getRoom().getCode() != null}">
+        <div><p th:text="'Message : '+${numberResponse.getMessage()}"></p></div>
+        <a href="numbers.html"
+           th:href="@{'/number/getPrevious?code='+${numberResponse.getRoom().getCode()}}">Previous
+            Number</a>
+</div>
+
+
+</body>
+</html>

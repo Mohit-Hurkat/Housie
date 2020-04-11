@@ -1,0 +1,12 @@
+mongodb:
+  primary:
+    host: localhost
+    port: 27017
+    database: housie
+
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+
+
