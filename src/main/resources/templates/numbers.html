@@ -8,21 +8,53 @@
 </head>
 <body>
 <div th:if="${numberResponse.getNumber() != null and numberResponse.getRoom().getCode() !=null}">
-    <div class="center_number"><p th:text="'Number : '+${numberResponse.getNumber()}"></p></div>
-    <a href="numbers.html"
-       th:href="@{'/number/getPrevious?code='+${numberResponse.getRoom().getCode()}+'&amp;currentNumber='+${numberResponse.getNumber()}}">Previous
-        Number</a>
-    <a href="numbers.html"
-       th:href="@{'/number/getNext?code='+${numberResponse.getRoom().getCode()}+'&amp;currentNumber='+${numberResponse.getNumber()}}">Next
-        Number</a>
-    <a href="numbers.html" th:href="@{'/number/getNextRa:ndom?code='+${numberResponse.getRoom().getCode()}}">Next Random
-        Number</a>
+
+    <div style="display: flex;">
+        <div class="previous_button">
+            <div style="width: 100px;height: 900px;">
+                <a href="numbers.html"
+                   th:href="@{'/number/getPrevious?code='+${numberResponse.getRoom().getCode()}+'&amp;currentNumber='+${numberResponse.getNumber()}}">
+                    <img style="max-width: 100px;max-height: 900px;padding-top: 400px" th:src="@{'../img/left.png'}">
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <img style="margin:auto;width:1500px;height:1000px"
+                 th:src="@{'../img/'+${numberResponse.getNumber()}+'.jpg'}" th:alt="${numberResponse.getNumber()}"/>
+        </div>
+
+        <div class="next_button">
+            <div style="width: 100px;height: 900px;">
+                <a href="numbers.html"
+                   th:href="@{'/number/getNext?code='+${numberResponse.getRoom().getCode()}+'&amp;currentNumber='+${numberResponse.getNumber()}}">
+                    <img style="max-width: 100px;max-height: 900px;padding-top: 400px" th:src="@{'../img/right.png'}">
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="height: 50px;">
+    </div>
+
+    <p class="center_number" th:text="'Number : '+${numberResponse.getNumber()}"></p>
+
+    <div class="center_number">
+        <a href="numbers.html" th:href="@{'/number/getNextRandom?code='+${numberResponse.getRoom().getCode()}}">Next
+            Random
+            Number</a>
+    </div>
+
+    <div class="center_number">
+        <a href="numbers.html" th:href="@{'/number/getCalledNumbers?code='+${numberResponse.getRoom().getCode()}}">Called Number</a>
+    </div>
 </div>
 <div th:if="${numberResponse.getNumber() == null and numberResponse.getRoom().getCode() != null}">
-        <div><p th:text="'Message : '+${numberResponse.getMessage()}"></p></div>
-        <a href="numbers.html"
-           th:href="@{'/number/getPrevious?code='+${numberResponse.getRoom().getCode()}}">Previous
-            Number</a>
+    <div><p th:text="'Message : '+${numberResponse.getMessage()}"></p></div>
+    <a href="numbers.html"
+       th:href="@{'/number/getPrevious?code='+${numberResponse.getRoom().getCode()}}">Previous
+        Number</a>
 </div>
 
 

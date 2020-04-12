@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../static/css/numbers.css" th:href="@{/css/numbers.css}" rel="stylesheet"/>
+
+    <title>HOUSIE</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:if="${roomResponse.getData() != null and roomResponse.getData().getCode() !=null}">
+
+    <div style="display: flex;">
+        <div class="previous_button">
+            <div style="width: 100px;height: 900px;">
+                <a href="numbers.html"
+                   th:href="@{'/number/getPrevious?code='+${roomResponse.getData().getCode()}}">
+                    <img style="max-width: 100px;max-height: 900px;padding-top: 400px" th:src="@{'../img/left.png'}">
+                </a>
+            </div>
+        </div>
+
+        <div style="width:1500px;height:1000px;display: flex;flex-wrap: wrap;">
+            <!--            <tr th:each="calledNumber : ${roomResponse.getData().getCalledNumbers()}">-->
+            <div th:each="number : ${#numbers.sequence( 1, 90)}" style="height:100px">
+                <div th:if="${roomResponse.getData().getCalledNumbers().contains(number)}" th:text="${number}" style="background-color: lightgreen; height: 30px; width: 30px; border: 5px solid green; padding: 10px; margin: 5px;">
+                </div>
+                <div th:unless="${roomResponse.getData().getCalledNumbers().contains(number)}" style="background-color: white; height: 30px; width: 30px; border: 5px solid orange; padding: 10px; margin: 5px;"
+                     th:text="${number}"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

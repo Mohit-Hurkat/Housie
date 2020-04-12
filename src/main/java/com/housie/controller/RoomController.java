@@ -41,5 +41,4 @@ public class RoomController {
     public RoomResponse getRoomData(@QueryParam("code") String code) {
         return roomService.getHousieRoom(code);
     }
-
 }

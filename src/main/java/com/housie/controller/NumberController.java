@@ -1,7 +1,9 @@
 package com.housie.controller;
 
 import com.housie.response.NumberResponse;
+import com.housie.response.RoomResponse;
 import com.housie.service.NumberService;
+import com.housie.service.RoomService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class NumberController {
 
     @Autowired
     private NumberService numberService;
+
+    @Autowired
+    private RoomService roomService;
 
 
     @GetMapping(value = "/getNextRandom")
@@ -44,6 +49,17 @@ public class NumberController {
         model.addAttribute("numberResponse", numberResponse);
         return "numbers";
     }
+
+    @GetMapping(value = "/getCalledNumbers")
+    public String getRemaining(Model model, @QueryParam("code") String code) {
+        RoomResponse roomResponse = roomService.getHousieRoom(code);
+        model.addAttribute("roomResponse", roomResponse);
+        return "calledNumbers";
+    }
+
+//    public String setNumberImage(){
+//
+//    }
 
 
 }

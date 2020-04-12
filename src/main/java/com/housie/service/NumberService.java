@@ -35,6 +35,7 @@ public class NumberService {
         if (response.getData() == null) {
             return new NumberResponse(null, null, response.getMessage(), response.getStatus());
         }
+//        if(response.getData().getLastNumberRemovedAt()!=null && System.currentTimeMillis() - response.getData().getLastNumberRemovedAt() < 10000 ){
         if(response.getData().getLastNumberRemovedAt()!=null && System.currentTimeMillis() - response.getData().getLastNumberRemovedAt() < 10000 ){
             Room room = new Room();
             room.setCode(code);
@@ -68,7 +69,7 @@ public class NumberService {
             return new NumberResponse(null, null, response.getMessage(), response.getStatus());
         }
 
-        Integer responseNumber = null;
+        Integer responseNumber = currentNumber;
         NumberResponse numberResponse = new NumberResponse(response.getData());
 
         if(currentNumber==null){
